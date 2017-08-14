@@ -1,0 +1,9 @@
+CREATE TABLE `note` (
+  `note_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `note_title` varchar(50) NOT NULL,
+  `note` varchar(1000) DEFAULT NULL,
+  `note_created` datetime DEFAULT NULL,
+  `note_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`note_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+
