@@ -52,3 +52,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['api/notes']['GET'] = 'NotesController/index';
+$route['api/notes']['POST'] = 'NotesController/insertNote';
+$route['api/notes']['PUT'] = 'NotesController/updateNote';
+$route['api/notes']['DELETE'] = 'NotesController/deleteNote';
+
+
+
+ 
+//POLLING
+//$route['products/(:num)']['DELETE'] = 'product/delete/$1';
+//$route['polling']['DELETE'] = 'polling/delete';
+
+//chat
+//$route['chat']['POST'] = 'chat/insert';
+
+//account
+//$route['account']['POST'] = 'account/newaccount'; //create account
+
+//CONTACTS
+//$route['contacts']['POST'] = 'contacts/requestContact'; //request contact
+//$route['contacts']['DELETE'] = 'contacts/remove';
+//$route['contacts/accept']['PUT'] = 'contacts/accept';
+
+//LOGIN
+//$route['login']['POST'] = 'login/login';
+
+//GAME
+//$route['game']['POST'] = 'game/create';
+//$route['game']['PUT'] = 'game/updateUserInfo';
+//$route['game/accept']['PUT'] = 'game/acceptReelay';
+
+//UPLOAD -- API
+//$route['api/upload/video']['POST'] = 'api/uploadUserVideo';
+
+
