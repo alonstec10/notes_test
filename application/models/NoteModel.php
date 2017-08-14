@@ -2,8 +2,6 @@
 
 class NoteModel extends CI_Model {
 
-	private $messages 	=	array();
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -21,7 +19,7 @@ class NoteModel extends CI_Model {
 		$query = $this->db->query($sql);
 
 		$rows = [];
-		while( $row = $query->row() ) 
+		foreach( $query->result() as $row ) 
 		{
 			$rows[] = $row;
 		}

@@ -1,5 +1,11 @@
 <?php
+
+
+
+
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+
 
 class NotesController extends CI_Controller {
 
@@ -23,12 +29,30 @@ class NotesController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('NoteModel');
+
+		$this->load->library("ValidRequest", $this->config->item('passwords'));
 	}
+
+	/**
+	* Makes sure the request is valid with basic auth
+	*
+	*/
+	protected function isValid()
+	{
+		if( !$this->validrequest->isValid())
+		{
+			$this->output->set_status_header(403);
+			exit;
+		}
+	}
+
 
 
 	public function index()
 	{	
+		$this->isValid();
 		$response = [];
+		$response['header'] = $authHeader;
 		$response['data'] = $this->NoteModel->allNotes();
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
@@ -36,6 +60,8 @@ class NotesController extends CI_Controller {
 	//create a response object
 	public function insertNote()
 	{
+		$this->isValid();
+
 		$response = [];
 		
 		//public function createNote( $note_title, $note )
@@ -64,6 +90,10 @@ class NotesController extends CI_Controller {
 
 	public function updateNote()
 	{
+		$this->isValid();
+
+
+
 		$response = [];
 		//$response['method'] = 'UPDATE';
 
@@ -95,6 +125,9 @@ class NotesController extends CI_Controller {
 
 	public function deleteNote()
 	{
+		$this->isValid();
+
+
 		$response = [];
 		//$response['method'] = 'DELETE';
 

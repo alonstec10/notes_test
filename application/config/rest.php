@@ -9,4 +9,5 @@
 |   '' = no login required, 'basic' = relatively secure login, 'digest' = secure login
 |
 */
-$config['rest_auth'] = 'basic';
+
+$config['passwords'] = array('password');
