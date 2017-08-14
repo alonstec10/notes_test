@@ -1,0 +1,8 @@
+ CREATE TABLE `user_notes` (
+  `user_notes_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `note_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`user_notes_id`),
+  KEY `user_id` (`user_id`),
+  KEY `note_id` (`note_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
