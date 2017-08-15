@@ -52,7 +52,7 @@ class NotesController extends CI_Controller {
 	{	
 		$this->isValid();
 		$response = [];
-		$response['header'] = $authHeader;
+		
 		$response['data'] = $this->NoteModel->allNotes();
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
@@ -92,11 +92,7 @@ class NotesController extends CI_Controller {
 	{
 		$this->isValid();
 
-
-
 		$response = [];
-		//$response['method'] = 'UPDATE';
-
 		$user_id = $this->input->input_stream('user_id');
 		$note_id = $this->input->input_stream('note_id');
 		$note = $this->input->input_stream('note');
