@@ -16,22 +16,9 @@ class NotesController extends CI_Controller {
 
 		$this->load->library("ValidRequest", $this->config->item('passwords'));
 	}
-
 	/**
-	* Makes sure the request is valid with basic auth
-	*
+	* Get all notes
 	*/
-	protected function isValid()
-	{
-		if( !$this->validrequest->isValid())
-		{
-			$this->output->set_status_header(403);
-			exit;
-		}
-	}
-
-
-
 	public function index()
 	{	
 		$this->isValid();
@@ -39,8 +26,13 @@ class NotesController extends CI_Controller {
 		$response['data'] = $this->NoteModel->allNotes();
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
-
-	//create a response object
+	
+	/**
+	* Insert note
+	* @param (int) user_id
+	* @param (string) title
+	* @param (string) note
+	*/
 	public function insertNote()
 	{
 		$this->isValid();
@@ -71,6 +63,14 @@ class NotesController extends CI_Controller {
 		}
 	}
 
+	/**
+	* Update existing note
+	* 
+	* @param (int) user_id
+	* @param (int) note_id
+	* @param (string) note
+	* @param (string) note_title
+	*/
 	public function updateNote()
 	{
 		$this->isValid();
@@ -79,7 +79,7 @@ class NotesController extends CI_Controller {
 		$user_id = $this->input->input_stream('user_id');
 		$note_id = $this->input->input_stream('note_id');
 		$note = $this->input->input_stream('note');
-		$note_title = $this->input->input_stream('note');
+		$note_title = $this->input->input_stream('note_title');
 
 
 		if( empty( $user_id) || empty( $note))
@@ -102,6 +102,12 @@ class NotesController extends CI_Controller {
 		}
 	}
 
+	/**
+	* Delete note
+	*
+	* @param (int) user_id
+	* @param (int) note_id
+	*/
 	public function deleteNote()
 	{
 		$this->isValid();
@@ -133,7 +139,18 @@ class NotesController extends CI_Controller {
 		}
 	}
 
-
+	/**
+	* Makes sure the request is valid with basic auth
+	*
+	*/
+	protected function isValid()
+	{
+		if( !$this->validrequest->isValid())
+		{
+			$this->output->set_status_header(403);
+			exit;
+		}
+	}
 
 
 }
