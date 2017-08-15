@@ -9,22 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class NotesController extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -52,7 +36,6 @@ class NotesController extends CI_Controller {
 	{	
 		$this->isValid();
 		$response = [];
-		
 		$response['data'] = $this->NoteModel->allNotes();
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
@@ -74,7 +57,7 @@ class NotesController extends CI_Controller {
 			//throw some exception 
 			//throw status 500
 			//echo "there as an error"
-			$this->output->set_status_header(500);
+			$this->output->set_status_header(401);
 			exit;
 		} 
 		else if (!$this->NoteModel->createNote($note_title, $note)) {
@@ -104,7 +87,7 @@ class NotesController extends CI_Controller {
 			//throw some exception 
 			//throw status 500
 			//echo "there as an error"
-			$this->output->set_status_header(500);
+			$this->output->set_status_header(401);
 			exit;
 		} 
 		else if (!$this->NoteModel->updateNoteById($note_id, $note_title, $note))
@@ -135,7 +118,7 @@ class NotesController extends CI_Controller {
 			//throw some exception 
 			//throw status 500
 			//echo "there as an error"
-			$this->output->set_status_header(500);
+			$this->output->set_status_header(401);
 			exit;
 		} 
 		else if( !$this->NoteModel->deleteNoteById($note_id) )

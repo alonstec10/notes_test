@@ -17,6 +17,8 @@ class ValidRequest {
 
 	/**
 	* Validate the Basic Header in Authorization
+    *
+    * @return (bool)
 	*/
 	public function isValid()
 	{
